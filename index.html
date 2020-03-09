@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Calculadora</title>
+</head>
+<body>
+    <div id="container">
+        <input type="number" placeholder="1° Número" v-model="number1">
+        <input type="number" placeholder="2° Número" v-model="number2">
+        <select id="cboOperacao" v-model="operacao">
+            <option value="1">Somar</option>
+            <option value="2">Subtrair</option>
+            <option value="3">Multiplicar</option>
+            <option value="4">Dividir</option>
+        </select>
+        <button @click="calculo">Calcular</button>
+        <span v-if="calculado">{{ resultado }}</span>
+    </div>
+
+    <script>
+        let container = new Vue({
+            el: "#container",
+            data: {
+                number1: "",
+                number2: "",
+                operacao: document.getElementById("cboOperacao"),
+                resultado: "",
+                calculado: false           
+            }, methods: {
+                calculo: function(){
+                    if(this.operacao == "1"){
+                        this.resultado = parseInt(this.number1) + parseInt(this.number2)
+                        this.calculado = true
+                    }
+                    else if(this.operacao == "2"){
+                        this.resultado = this.number1 - this.number2
+                        this.calculado = true
+                    }
+                    else if(this.operacao == "3"){
+                        this.resultado = this.number1 * this.number2
+                        this.calculado = true
+                    }
+                    else if(this.operacao == "4"){
+                        this.resultado = this.number1 / this.number2
+                        this.calculado = true
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
